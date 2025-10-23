@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Torre Yei — Los Pilares del Progreso</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ====== RESET Y BASE ====== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { height: 100%; scroll-behavior: smooth; }
+body {
+  font-family: 'Lora', serif;
+  background: linear-gradient(180deg,#ffffff 0%, #f5e6cc 50%, #ffffff 100%);
+  color: #222;
+  overflow-x: hidden;
+}
+
+/* ====== CONTENEDOR ====== */
+.wrap { max-width: 1100px; margin:0 auto; padding:30px 6%; position:relative; z-index:10; }
+
+/* ====== MENU HAMBURGUESA ====== */
+header.site-header {
+  position: sticky; top: 0; z-index: 50;
+  display:flex; justify-content:space-between; align-items:center; padding:14px 24px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px); border-bottom:1px solid rgba(54,89,140,0.08);
+  border-radius:0 0 12px 12px;
+}
+header .brand { font-weight:600; color:#36598c; font-size:1.1rem; text-align:center; flex:1; }
+.nav-toggle { width:30px; height:24px; cursor:pointer; position:relative; display:flex; flex-direction:column; justify-content:space-between; z-index:60; }
+.nav-toggle span { display:block; height:3px; background:#36598c; border-radius:2px; transition: all 0.3s ease; }
+nav.menu { position:fixed; top:0; left:-100%; width:70%; max-width:320px; height:100%; background:#ffffffee; backdrop-filter:blur(6px); box-shadow:4px 0 28px rgba(0,0,0,0.12); display:flex; flex-direction:column; padding:80px 24px; transition: left 0.35s ease; }
+nav.menu.open { left:0; }
+nav.menu a { margin-bottom:24px; text-decoration:none; font-weight:500; font-size:1rem; color:#2b2b2b; }
+
+/* ====== HERO ====== */
+.hero { display:flex; flex-direction:column; align-items:center; margin-bottom:36px; position:relative; z-index:10; }
+.hero h1 { font-size:clamp(1.8rem,4vw,2.6rem); color:#36598c; margin-bottom:14px; text-align:center; opacity:0; transform:translateY(24px); transition: all 0.8s ease; }
+.hero img { width:min(760px,100%); height:auto; border-radius:12px; box-shadow:0 20px 50px rgba(30,30,30,0.15); opacity:0; transform:translateY(28px); transition: all 0.9s ease; }
+
+/* ====== SECCIONES ====== */
+section.block { margin:40px 0; padding:34px; border-radius:12px; background: rgba(255,255,255,0.65); backdrop-filter:blur(4px); position:relative; z-index:8; opacity:0; transform:translateY(30px); transition: all 0.9s cubic-bezier(.2,.9,.2,1); }
+section.block h2 { font-size:1.05rem; color:#21314a; margin-bottom:12px; }
+section.block p { line-height:1.85; font-size:1.02rem; color:#222; }
+.pilares { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:12px; }
+.pilares .card { padding:18px; border-radius:10px; background: rgba(255,255,255,0.35); border:1px solid rgba(54,89,140,0.06); }
+.pilares .card h3 { margin-bottom:8px; color:#2b3b5a; font-size:1rem; }
+
+/* ====== TRIÁNGULOS ====== */
+#triangles { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+.triangle {
+  position:absolute;
+  width:0;
+  height:0;
+  border-left:16px solid transparent;
+  border-right:16px solid transparent;
+  border-bottom:28px solid rgba(255, 124, 1, 0.35); /* para comprobar visibilidad */
+  filter:blur(0.2px);
+}
+
+
+/* ====== FOOTER ====== */
+footer.site-footer { margin:50px 0 100px; text-align:center; color:#555; font-size:.95rem; }
+
+/* ====== RESPONSIVE ====== */
+@media (min-width:900px){ .hero { flex-direction:row; gap:36px; } }
+@media(max-width:700px){ .pilares { grid-template-columns:1fr; } }
+
+/* ====== TRANSITIONS & REVEAL ====== */
+.reveal.show { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- TRIÁNGULOS -->
+<div id="triangles" aria-hidden="true"></div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="brand">Torre Yei</div>
+  <nav class="menu" id="menu">
+    <a href="#significado">Significado</a>
+    <a href="#inspiracion">Inspiración</a>
+    <a href="#emplazamiento">Emplazamiento</a>
+    <a href="#pilares">Pilares</a>
+    <a href="#sustentabilidad">Sustentabilidad</a>
+    <a href="#dialogo">Diálogo</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="wrap" aria-live="polite">
+  <section class="hero">
+    <h1 id="hero-title">Torre Yei: Los Pilares del Progreso</h1>
+    <img src="img/alzadosky.png" alt="Render Torre Yei" id="main-render">
+  </section>
+
+  <!-- SECCIONES -->
+  <section id="significado" class="block reveal">
+    <h2>Significado</h2>
+    <p>El nombre Yei, proveniente del náhuatl, significa “tres” y representa el equilibrio, la armonía y la plenitud.
+    En la cosmovisión prehispánica, el número tres simbolizaba la unión entre cielo, tierra e inframundo, un ciclo completo que conectaba las dimensiones del universo.</p>
+  </section>
+
+  <section id="inspiracion" class="block reveal">
+    <h2>Inspiración</h2>
+    <p>Inspirada en esa visión ancestral, la Torre Yei se erige como un símbolo de conexión entre pasado, presente y futuro: un diálogo entre lo ancestral y lo contemporáneo, entre la solidez del pasado y la transparencia del porvenir.
+    Así, el proyecto retoma la fuerza del México antiguo y la traduce en una arquitectura moderna, sustentable y con identidad.</p>
+  </section>
+
+  <section id="emplazamiento" class="block reveal">
+    <h2>Emplazamiento</h2>
+    <p>Ubicada a un costado del Monumento a la Revolución, la Torre Yei —antes concebida como “Torre Tres Poderes”— surge del diálogo entre la historia y la modernidad.
+    El emplazamiento, en pleno corazón político y cultural de la Ciudad de México, representa la evolución constante del país: el paso del pasado monumental al futuro transparente y sustentable.</p>
+  </section>
+
+  <section id="pilares" class="block reveal">
+    <h2>Los tres pilares</h2>
+    <p>El edificio se conforma por tres torres dispuestas en forma triangular, unidas por un núcleo de cristal que simboliza la conexión entre ellas.
+    Cada torre se eleva como un pilar estructural del progreso, representando los tres elementos que sostienen el desarrollo nacional: la historia, la sociedad y la economía.</p>
+    <div class="pilares">
+      <div class="card">
+        <h3>Historia</h3>
+        <p>La historia, evocada en la materialidad del concreto, refleja la solidez, la memoria y la permanencia de nuestras raíces culturales.</p>
+      </div>
+      <div class="card">
+        <h3>Sociedad</h3>
+        <p>La sociedad, expresada en la unión de cristal, manifiesta la transparencia, el diálogo y la apertura hacia un futuro compartido.</p>
+      </div>
+      <div class="card">
+        <h3>Economía</h3>
+        <p>La economía, proyectada en la verticalidad y crecimiento de las torres, simboliza la innovación y el impulso hacia el porvenir.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sustentabilidad" class="block reveal">
+    <h2>Sustentabilidad y diseño bioclimático</h2>
+    <p>El diseño incorpora además un enfoque bioclimático y sustentable, con áreas verdes, terrazas al aire libre y espacios que aprovechan las corrientes de aire natural, reduciendo la necesidad de sistemas mecánicos de climatización.
+    Estas estrategias convierten al edificio en un organismo vivo, amigable con el ambiente y en sintonía con su entorno urbano.</p>
+  </section>
+
+  <section id="dialogo" class="block reveal">
+    <h2>Diálogo con el Monumento</h2>
+    <p>La Torre Yei no busca competir con el Monumento a la Revolución, sino dialogar con él, reinterpretando su mensaje de transformación nacional.
+    La unión del concreto y el cristal traduce arquitectónicamente la transición del pasado cultural al futuro contemporáneo, reafirmando que el verdadero progreso se construye sobre la historia, la sociedad y la economía, en equilibrio con la naturaleza.</p>
+  </section>
+
+  <section id="lamina" class="block reveal" style="text-align:center;">
+  <button id="open-pdf" style="
+    background:#36598c; color:white; border:none; padding:14px 26px;
+    font-size:1rem; border-radius:8px; cursor:pointer; letter-spacing:0.5px;
+  ">
+    Ver lámina de presentación
+  </button>
+</section>
+
+
+  <footer class="site-footer reveal">
+    © 2025 Octavio Velázquez — Proyecto Torre Yei
+  </footer>
+</div>
+
+<div id="pdf-modal" style="
+  position:fixed; inset:0; background:rgba(0,0,0,0.75);
+  display:none; align-items:center; justify-content:center;
+  z-index:9999; padding:20px;
+">
+  <div style="
+    width:90%; height:90%; background:white; border-radius:12px;
+    position:relative; overflow:hidden; box-shadow:0 10px 40px rgba(0,0,0,0.35);
+  ">
+    <button id="close-pdf" style="
+      position:absolute; top:10px; right:10px; background:#36598c; color:#fff;
+      border:none; width:38px; height:38px; font-size:1.1rem; cursor:pointer;
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+    ">×</button>
+
+    <embed
+      src="documents/lamina.pdf"
+      type="application/pdf"
+      style="width:100%; height:100%; border:none;"
+    />
+  </div>
+</div>
+
+
+<script>
+// ====== MENÚ HAMBURGUESA ======
+const navToggle = document.getElementById('nav-toggle');
+const menu = document.getElementById('menu');
+navToggle.addEventListener('click',()=>{ menu.classList.toggle('open'); });
+
+// ====== Intro y fade-in ======
+const heroTitle = document.getElementById('hero-title');
+const heroImg = document.getElementById('main-render');
+setTimeout(()=>{ heroTitle.style.opacity=1; heroTitle.style.transform='translateY(0)'; heroImg.style.opacity=1; heroImg.style.transform='translateY(0)'; },300);
+
+// ====== Triángulos ======
+const triContainer = document.getElementById('triangles');
+let triangles=[];
+for(let i=0;i<28;i++){
+  const el=document.createElement('div'); el.className='triangle';
+  const left=Math.random()*100, top=Math.random()*100;
+  const delay=Math.random()*10, scale=0.6+Math.random()*1.6, opacity=0.18+Math.random()*0.45, rot=Math.random()*360;
+  el.style.left=left+'vw'; el.style.top=top+'vh'; el.style.opacity=opacity;
+  el.style.transform=`rotate(${rot}deg) scale(${scale})`; triContainer.appendChild(el);
+  triangles.push({el,speed:0.1+Math.random()*0.25});
+}
+
+// ====== Reveal scroll ======
+const reveals=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
+},{threshold:0.18});
+reveals.forEach(r=>io.observe(r));
+
+// ====== Parallax ======
+window.addEventListener('scroll',()=>{
+  const scrollY=window.scrollY;
+  heroImg.style.transform=`translateY(${scrollY*0.12}px)`;
+  triangles.forEach(t=>{ t.el.style.transform=`translateY(${scrollY*t.speed}px)`; });
+});
+// ====== MODAL PDF ======
+const openPDF = document.getElementById('open-pdf');
+const closePDF = document.getElementById('close-pdf');
+const modalPDF = document.getElementById('pdf-modal');
+
+openPDF.addEventListener('click', ()=>{
+  modalPDF.style.display = 'flex';
+});
+
+closePDF.addEventListener('click', ()=>{
+  modalPDF.style.display = 'none';
+});
+
+// Cerrar con fondo al hacer click fuera
+modalPDF.addEventListener('click', (e)=>{
+  if(e.target === modalPDF){ modalPDF.style.display = 'none'; }
+});
+
+
+</script>
+
+</body>
+</html>
